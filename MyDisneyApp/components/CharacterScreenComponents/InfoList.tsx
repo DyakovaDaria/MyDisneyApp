@@ -15,7 +15,7 @@ const ImagesListItem = ({info, theme}: { theme: string, info: string[] }): JSX.E
     return <View style={styles.container}>
         <Text style={styles.titleText}>{theme}</Text>
         {(info && info.length > 0) ? <FlatList data={info} renderItem={TextItem}/> :
-            <Text style={styles.simpleText}>Empty :(</Text>}
+            <Text style={styles.simpleText}>Empty :</Text>}
     </View>
 };
 const styles = StyleSheet.create({
