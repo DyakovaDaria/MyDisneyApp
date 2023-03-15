@@ -1,15 +1,12 @@
-import { getFirestore, doc, getDoc, setDoc } from 'firebase/firestore';
+import { getFirestore, doc, getDoc, setDoc } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import firebase from './db/firebase'
-import firestore from 'firebase/firestore';
+import firebase from "./db/firebase";
+import firestore from "firebase/firestore";
 
 export default class API {
-  // private createUser: (auth, email, password) => void;
-  // private signIn: (auth: Auth, email: string, password: string) => Promise<UserCredential>;
-
   static createUser = createUserWithEmailAndPassword;
   static signIn = signInWithEmailAndPassword;
 
@@ -28,57 +25,5 @@ export default class API {
     const json = await response.json();
     console.log("[i] json", json);
     return json;
-  }
-
-  static async getListsCloudData() {
-    try {
-        const db = getFirestore();
-        const docRefQuestions = doc(db, "users", firebase.auth.currentUser.email);
-        const docSnap = await getDoc(docRefQuestions);
-        if (docSnap.exists()) {
-            return docSnap.data();
-        } else {
-            console.log("No such document!");
-        }
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  static async storeListsCloudData(value) {
-    try {
-        const db = getFirestore();
-        const docRef = await setDoc(doc(db, "listCharacters", firebase.auth.currentUser.email), {
-            data: value
-        });
-    } catch (e) {
-        console.log(e);
-    }
-  }
-
-  static async getCommentsCloudData(characterId) {
-    try {
-        const db = getFirestore();
-        const docRefQuestions = doc(db, "users", firebase.auth.currentUser.email, characterId);
-        const docSnap = await getDoc(docRefQuestions);
-        if (docSnap.exists()) {
-            return docSnap.data().comment;
-        } else {
-            return "";
-        }
-    } catch (e) {
-      console.log(e);
-    }
-  }
-
-  static async storeCommentsCloudData(comment, characterId) {
-    try {
-        const db = getFirestore();
-        const docRef = await setDoc(doc(db, "charactersComments", firebase.auth.currentUser.email, characterId), {
-            comment: comment
-        });
-    } catch (e) {
-        console.log(e);
-    }
   }
 }

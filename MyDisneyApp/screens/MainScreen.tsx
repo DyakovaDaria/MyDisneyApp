@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
   titleText: {
     flex: 2,
     fontSize: 60,
-    textAlign: "left"
+    textAlign: "left",
   },
 });
 export default MainScreen;

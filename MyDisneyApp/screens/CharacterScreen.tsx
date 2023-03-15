@@ -10,8 +10,9 @@ import {
   Image,
   Dimensions,
   FlatList,
-  ScrollView,
 } from "react-native";
+import { ScrollView } from "react-native-virtualized-view";
+
 import COLORS from "../constants/COLORS";
 import SHADOW from "../constants/SHADOW";
 import { AntDesign, Feather, Ionicons } from "@expo/vector-icons";
@@ -54,6 +55,7 @@ const CharacterScreen = (props) => {
         placeholder="enter your comment"
         onChangeText={(text) => setComments(text)}
         value={comments}
+        editable={true}
       />
     </View>
   );
@@ -107,7 +109,9 @@ const CharacterScreen = (props) => {
           snapPoints={[450, 300, 0]}
           borderRadius={10}
           renderContent={renderContent}
-          onCloseEnd={()=> setShowComments(false) }
+          onCloseEnd={() => {
+            setShowComments(false);
+          }}
         />
       ) : null}
     </View>
