@@ -18,6 +18,7 @@ import { AntDesign, Feather, Ionicons } from "@expo/vector-icons";
 import InfoList from "../components/CharacterScreenComponents/InfoList";
 import { useNavigation } from "@react-navigation/native";
 import Animated from "react-native-reanimated";
+import API from "../API";
 import BottomSheet from "reanimated-bottom-sheet";
 
 const deviceWidth = Dimensions.get("window").width;
@@ -44,12 +45,15 @@ const CharacterScreen = (props) => {
   );
 
   const [showComments, setShowComments] = useState(false);
+  const [comments, setComments] = useState("");
   const renderContent = () => (
     <View style={styles.bottomSheetComment}>
       <Text>Swipe down to close</Text>
       <TextInput
         style={styles.inputBoxStyle}
         placeholder="enter your comment"
+        onChangeText={(text) => setComments(text)}
+        value={comments}
       />
     </View>
   );
@@ -103,7 +107,7 @@ const CharacterScreen = (props) => {
           snapPoints={[450, 300, 0]}
           borderRadius={10}
           renderContent={renderContent}
-          onCloseEnd={()=>setShowComments(false)}
+          onCloseEnd={()=> setShowComments(false) }
         />
       ) : null}
     </View>

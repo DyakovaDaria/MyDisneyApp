@@ -52,7 +52,6 @@ const MainScreen = () => {
       <ImagesList data={characters} />
     </View>
   ) : (
-    // <Text />
     <View style={styles.container}>
       <View style={styles.topContainer}>
         <Text style={styles.titleText}>Disney</Text>
@@ -83,7 +82,6 @@ const styles = StyleSheet.create({
   textInput: {
     flex: 1,
     height: 35,
-    // borderWidth: 1,
     borderRadius: 20,
     borderColor: COLORS.gray,
     textAlign: "center",
@@ -94,6 +92,7 @@ const styles = StyleSheet.create({
   titleText: {
     flex: 2,
     fontSize: 60,
+    textAlign: "left"
   },
 });
 export default MainScreen;
